@@ -10,15 +10,15 @@ const commands = [
         description: 'Configure payroll settings (admin only)',
     },
     {
-        name: 'set-role',
+        name: 'set_role',
         description: 'Set payout amount for a role (admin only)',
     },
     {
-        name: 'set-treasury',
+        name: 'set_treasury',
         description: 'Set treasury wallet address (admin only)',
     },
     {
-        name: 'set-token',
+        name: 'set_token',
         description: 'Set default payout token (ETH or ERC20 address) (admin only)',
     },
     {
@@ -42,7 +42,7 @@ const commands = [
         description: 'Show payout history',
     },
     {
-        name: 'set-notification-channel',
+        name: 'set_notification_channel',
         description: 'Set channel for payout notifications (admin only)',
     },
 ] as const satisfies PlainMessage<SlashCommand>[]

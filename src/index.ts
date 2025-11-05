@@ -32,13 +32,13 @@ bot.onSlashCommand('help', async (handler, { channelId }) => {
         '**💰 Payroll Bot Commands**\n\n' +
             '**Admin Commands:**\n' +
             '• `/config` - View current configuration\n' +
-            '• `/set-treasury <address>` - Set treasury wallet address\n' +
-            '• `/set-token <ETH|0x...>` - Set payout token (ETH or ERC20 address)\n' +
-            '• `/set-role <roleId> <amount>` - Set payout amount for a role\n' +
+            '• `/set_treasury <address>` - Set treasury wallet address\n' +
+            '• `/set_token <ETH|0x...>` - Set payout token (ETH or ERC20 address)\n' +
+            '• `/set_role <roleId> <amount>` - Set payout amount for a role\n' +
             '• `/enable` - Enable automatic monthly payouts\n' +
             '• `/disable` - Disable automatic monthly payouts\n' +
             '• `/payout` - Trigger manual payout immediately\n' +
-            '• `/set-notification-channel` - Set channel for payout notifications\n\n' +
+            '• `/set_notification_channel` - Set channel for payout notifications\n\n' +
             '**Public Commands:**\n' +
             '• `/status` - Show current payroll configuration\n' +
             '• `/history` - Show payout history\n\n' +
@@ -77,14 +77,14 @@ bot.onSlashCommand('config', async (handler, { channelId, spaceId, userId }) => 
 })
 
 // Set treasury command
-bot.onSlashCommand('set-treasury', async (handler, { channelId, spaceId, userId, args }) => {
+bot.onSlashCommand('set_treasury', async (handler, { channelId, spaceId, userId, args }) => {
     if (!(await requireAdmin(handler, userId, spaceId))) {
         await handler.sendMessage(channelId, '❌ You must be a space admin to use this command.')
         return
     }
 
     if (args.length === 0) {
-        await handler.sendMessage(channelId, 'Usage: `/set-treasury <wallet_address>`')
+        await handler.sendMessage(channelId, 'Usage: `/set_treasury <wallet_address>`')
         return
     }
 
@@ -102,14 +102,14 @@ bot.onSlashCommand('set-treasury', async (handler, { channelId, spaceId, userId,
 })
 
 // Set token command
-bot.onSlashCommand('set-token', async (handler, { channelId, spaceId, userId, args }) => {
+bot.onSlashCommand('set_token', async (handler, { channelId, spaceId, userId, args }) => {
     if (!(await requireAdmin(handler, userId, spaceId))) {
         await handler.sendMessage(channelId, '❌ You must be a space admin to use this command.')
         return
     }
 
     if (args.length === 0) {
-        await handler.sendMessage(channelId, 'Usage: `/set-token <ETH|0x...>`')
+        await handler.sendMessage(channelId, 'Usage: `/set_token <ETH|0x...>`')
         return
     }
 
@@ -136,14 +136,14 @@ bot.onSlashCommand('set-token', async (handler, { channelId, spaceId, userId, ar
 })
 
 // Set role payout command
-bot.onSlashCommand('set-role', async (handler, { channelId, spaceId, userId, args }) => {
+bot.onSlashCommand('set_role', async (handler, { channelId, spaceId, userId, args }) => {
     if (!(await requireAdmin(handler, userId, spaceId))) {
         await handler.sendMessage(channelId, '❌ You must be a space admin to use this command.')
         return
     }
 
     if (args.length < 2) {
-        await handler.sendMessage(channelId, 'Usage: `/set-role <roleId> <amount>`')
+        await handler.sendMessage(channelId, 'Usage: `/set_role <roleId> <amount>`')
         return
     }
 
@@ -189,7 +189,7 @@ bot.onSlashCommand('enable', async (handler, { channelId, spaceId, userId }) => 
     if (!config.treasuryAddress || config.treasuryAddress === '0x0000000000000000000000000000000000000000') {
         await handler.sendMessage(
             channelId,
-            '❌ Please set a treasury address first using `/set-treasury <address>`',
+            '❌ Please set a treasury address first using `/set_treasury <address>`',
         )
         return
     }
@@ -304,7 +304,7 @@ bot.onSlashCommand('history', async (handler, { channelId, spaceId }) => {
 })
 
 // Set notification channel command
-bot.onSlashCommand('set-notification-channel', async (handler, { channelId, spaceId, userId }) => {
+bot.onSlashCommand('set_notification_channel', async (handler, { channelId, spaceId, userId }) => {
     if (!(await requireAdmin(handler, userId, spaceId))) {
         await handler.sendMessage(channelId, '❌ You must be a space admin to use this command.')
         return
